@@ -17,6 +17,7 @@ type Props = {
   selectedOption: Option;
   options: Array<Option>;
   animationType: 'none' | 'fade' | 'slide';
+  itemStyle:Object;
 };
 
 export default function Dropdown(props: Props) {
@@ -49,7 +50,7 @@ export function OptionsModal(props: Props) {
             {props.options.map((item, index) => {
               return (
                 <TouchableOpacity key={index} style={styles.optionItem} onPress={() => props.onSelect(item, false)}>
-                  <Text style={styles.optionText}>{item.label}</Text>
+                  <Text style={[styles.optionText, itemStyle]}>{item.label}</Text>
                 </TouchableOpacity>
               );
             })}
