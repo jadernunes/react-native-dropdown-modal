@@ -17,6 +17,7 @@ type Props = {
   selectedOption: Option;
   options: Array<Option>;
   animationType: 'none' | 'fade' | 'slide';
+  itemListStyle:Object;
   itemStyle:Object;
 };
 
@@ -26,7 +27,7 @@ export default function Dropdown(props: Props) {
       {props.label ? <Text style={styles.label}>{props.label}</Text> : null}
       <TouchableOpacity style={styles.button} onPress={() => props.onShow(true)}>
         <View style={styles.option}>
-          <Text style={styles.defaultOptionText}>{props.selectedOption.label}</Text>
+          <Text style={[styles.defaultOptionText, props.itemStyle]}>{props.selectedOption.label}</Text>
           <Icon name="expand-more" style={styles.icon} />
         </View>
       </TouchableOpacity>
@@ -50,7 +51,7 @@ export function OptionsModal(props: Props) {
             {props.options.map((item, index) => {
               return (
                 <TouchableOpacity key={index} style={styles.optionItem} onPress={() => props.onSelect(item, false)}>
-                  <Text style={[styles.optionText, itemStyle]}>{item.label}</Text>
+                  <Text style={[styles.optionText, props.itemListStyle]}>{item.label}</Text>
                 </TouchableOpacity>
               );
             })}
